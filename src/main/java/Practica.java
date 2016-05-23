@@ -23,15 +23,23 @@ public class Practica {
         Document doc = Jsoup.connect(url).get();
         Elements parrafos = doc.select("p");
         Elements imagenes = doc.select("img");
-        Elements form = doc.select("fomm");
+        Elements forms = doc.select("form");
 
         System.out.println("Cantidad de parrafos: "+parrafos.size());
         System.out.println("Cantidad de imagenes: "+imagenes.size());
-        System.out.println("Cantidad de form"+form.size());
-        System.out.println("Catidad de lineas"+doc.html().split("\n").length);
+        System.out.println("Cantidad de form: "+forms.size());
+        System.out.println("Catidad de lineas: "+doc.html().split("\n").length);
 
 
-
+        for (int i=0;i<forms.size();i++)
+        {
+            System.out.println("formulario " + (i+1));
+            Elements input= forms.get(i).select("input");
+            for(int j=0; j<input.size();j++)
+            {
+                System.out.println("\tTipo de input: "+input.get(j).attr("type"));
+            }
+        }
 
 
         in.close();
